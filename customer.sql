@@ -19,6 +19,8 @@ select count(distinct company)as 'Distinct Companies' from customers ;
 -- add a column for the CompanyID to the customers table
 alter table customers add CompanyID int;
 
+alter table customers add column CustomerID int unsigned primary KEY AUTO_INCREMENT;
+
 -- notice that the companyId is null
 select companyID, company from customers;
 

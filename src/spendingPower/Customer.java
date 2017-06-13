@@ -11,16 +11,9 @@ import java.sql.Statement;
 
 
 public class Customer {
-	private String courseOfStudy = "";
-	private String degree = "";
-	private String school = "";
-	private int gradYear = 0;
-	
-	
 	private Connection con = null;
 	private Statement stmt = null;
 	private ResultSet rs = null;
-	private int id = 0;
 	private String fullName = "";
 	private String title = "";
 	private String firstName = "";
@@ -35,8 +28,8 @@ public class Customer {
 	private String forName = "com.mysql.jdbc.Driver";
 	private String driverConnection = "jdbc:mysql://localhost/Customer?user=root&password=password";
 	private String table = "Customer";
-	private String primaryKeyName = "Customer";
-	
+	private String primaryKeyName = "CustomerID";
+	private int primaryKeyID = 0;
 	
 	public Customer(){
 		title = "Mr.";
@@ -49,7 +42,6 @@ public class Customer {
 		zipCode = 66106;
 		emailAddress = "jones.gaffney1920@gmail.com";
 		position = "lead programmer";
-		//company;
 		
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
@@ -75,7 +67,7 @@ public class Customer {
 			}catch (ClassNotFoundException e) {
 				e.printStackTrace();
 		}
-		id = getLastID();
+		primaryKeyID = getLastID();
 		
 	}
 	public Customer(String tit, String fN, String lN, String sA, String cit, String sta, int zC, String eA,String pos, Company com){
@@ -115,143 +107,98 @@ public class Customer {
 			}catch (ClassNotFoundException e) {
 				e.printStackTrace();
 		}
-		id = getLastID();
+		primaryKeyID = getLastID();
 	}
 	private int getLastID(){
-		/*int output = -1;
-		try{
-			
-			Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/Customer?"
-                                + "user=root&password=password");
-			stmt = con.createStatement();
-			String sql  = "select eduID from EducationR;";
-			PreparedStatement p = con.prepareStatement(sql);
-			rs=p.executeQuery();
-			rs.last();
-			output = rs.getInt(1);
-			id = output;
-			return output;
-			//p.setInt(1, id);
-			}catch (SQLException e) {
-				e.printStackTrace();
-			}catch (ClassNotFoundException e) {
-				e.printStackTrace();
-		}*/
 		return UtilityMySql.getLastID(forName, driverConnection, table, primaryKeyName);
 	}
 	public int getID(){
-		return id;
+		return primaryKeyID;
 	}
 	public String getTitle(){
 
-		return UtilityMySql.getStringMySql(forName, driverConnection, title, "Title", table, primaryKeyName, id);
+		return UtilityMySql.getStringMySql(forName, driverConnection, title, "Title", table, primaryKeyName, primaryKeyID);
 	}
 	public String getFirstName(){
 
-		return UtilityMySql.getStringMySql(forName, driverConnection, firstName, "FirstName", table, primaryKeyName, id);
+		return UtilityMySql.getStringMySql(forName, driverConnection, firstName, "FirstName", table, primaryKeyName, primaryKeyID);
 	}
 	public String getLastName(){
 
-		return UtilityMySql.getStringMySql(forName, driverConnection, lastName, "LastName", table, primaryKeyName, id);
+		return UtilityMySql.getStringMySql(forName, driverConnection, lastName, "LastName", table, primaryKeyName, primaryKeyID);
+	}
+	public String getStreetAddress(){
+
+		return UtilityMySql.getStringMySql(forName, driverConnection, streetAddress, "StreetAddrss", table, primaryKeyName, primaryKeyID);
 	}
 	public String getCity(){
 
-		return UtilityMySql.getStringMySql(forName, driverConnection, city, "City", table, primaryKeyName, id);
+		return UtilityMySql.getStringMySql(forName, driverConnection, city, "City", table, primaryKeyName, primaryKeyID);
 	}
 	public String getState(){
 
-		return UtilityMySql.getStringMySql(forName, driverConnection, state, "State", table, primaryKeyName, id);
+		return UtilityMySql.getStringMySql(forName, driverConnection, state, "State", table, primaryKeyName, primaryKeyID);
 	}
-	public int getzipCode(){
+	public int getZipCode(){
 
-		return UtilityMySql.getIntMySql(forName, driverConnection, zipCode, "ZipCode", table, primaryKeyName, id);
+		return UtilityMySql.getIntMySql(forName, driverConnection, zipCode, "ZipCode", table, primaryKeyName, primaryKeyID);
 	}
-	public void setCourseOfStudy(String cOS){
-		try{
-			Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/Customer?"
-                                + "user=root&password=password");
-			stmt = con.createStatement();
-			String sql  = "UPDATE EducationR SET eduCourse = ? WHERE eduID = ?;";
-			PreparedStatement p = con.prepareStatement(sql);
-			courseOfStudy = cOS;
-			p.setString(1, cOS);
-			p.setInt(2, id);
-			p.executeUpdate();
-			rs.next();
-			
-			}catch (SQLException e) {
-				e.printStackTrace();
-			}catch (ClassNotFoundException e) {
-				e.printStackTrace();
+	public String getEmailAddress(){
+
+		return UtilityMySql.getStringMySql(forName, driverConnection, emailAddress, "EmailAddress", table, primaryKeyName, primaryKeyID);
 		}
+	public String getPosition(){
+
+		return UtilityMySql.getStringMySql(forName, driverConnection, position, "Position", table, primaryKeyName, primaryKeyID);
+		}
+	public Company getCompany(){
+		return company;
 		
 	}
-	public void setDegree(String deg){
-		try{
-			Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/Customer?"
-                                + "user=root&password=password");
-			stmt = con.createStatement();
-			String sql  = "UPDATE EducationR SET eduDegree = ? WHERE eduID = ?;";
-			PreparedStatement p = con.prepareStatement(sql);
-			degree = deg;
-			p.setString(1, deg);
-			p.setInt(2, id);
-			p.executeUpdate();
-			rs.next();
-			
-			}catch (SQLException e) {
-				e.printStackTrace();
-			}catch (ClassNotFoundException e) {
-				e.printStackTrace();
-		}
+	public void setTitle(String tit){
+		UtilityMySql.setStringMySql(forName, driverConnection, title, tit, "Title", table, primaryKeyName, primaryKeyID);
+		fullName = firstName + " " + lastName;
 	}
-	public void setSchool(String sch){
-		try{
-			Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/Customer?"
-                                + "user=root&password=password");
-			stmt = con.createStatement();
-			String sql  = "UPDATE EducationR SET eduSchool = ? WHERE eduID = ?;";
-			PreparedStatement p = con.prepareStatement(sql);
-			school = sch;
-			p.setString(1, sch);
-			p.setInt(2, id);
-			p.executeUpdate();
-			rs.next();
-			
-			}catch (SQLException e) {
-				e.printStackTrace();
-			}catch (ClassNotFoundException e) {
-				e.printStackTrace();
-		}
+	public void setfirstName(String fN){
+		UtilityMySql.setStringMySql(forName, driverConnection, firstName, fN, "FirstName", table, primaryKeyName, primaryKeyID);
+		fullName = firstName + " " + lastName;
 	}
-	public void setGradYear(int gY){
-		try{
-			Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/Customer?"
-                                + "user=root&password=password");
-			stmt = con.createStatement();
-			String sql  = "UPDATE EducationR SET eduGradYear = ? WHERE eduID = ?;";
-			PreparedStatement p = con.prepareStatement(sql);
-			gradYear = gY;
-			p.setInt(1, gY);
-			p.setInt(2, id);
-			p.executeUpdate();
-			rs.next();
-			
-			}catch (SQLException e) {
-				e.printStackTrace();
-			}catch (ClassNotFoundException e) {
-				e.printStackTrace();
-		}
+	public void setLastName(String lN){
+		UtilityMySql.setStringMySql(forName, driverConnection, lastName, lN, "LastName", table, primaryKeyName, primaryKeyID);
+		fullName = firstName + " " + lastName;
+	}
+
+	public void setStreetAddress(String sA){
+		UtilityMySql.setStringMySql(forName, driverConnection, streetAddress, sA, "StreetAddress", table, primaryKeyName, primaryKeyID);
+	}
+	public void setCity(String cit){
+		UtilityMySql.setStringMySql(forName, driverConnection,city, cit, "City", table, primaryKeyName, primaryKeyID);
+	}
+	public void setState(String sta){
+		UtilityMySql.setStringMySql(forName, driverConnection,state, sta, "State", table, primaryKeyName, primaryKeyID);
+	}
+	public void setZipCode(int zC){
+		UtilityMySql.setIntMySql(forName, driverConnection,zipCode, zC, "ZipCode", table, primaryKeyName, primaryKeyID);
+	}
+	public void setEmailAddress(String eA){
+		UtilityMySql.setStringMySql(forName, driverConnection,emailAddress, eA, "EmailAddress", table, primaryKeyName, primaryKeyID);
+	}
+	public void setPosition(String pos){
+		UtilityMySql.setStringMySql(forName, driverConnection,emailAddress, pos, "Position", table, primaryKeyName, primaryKeyID);
+	}
+	public void setCompany(Company com){
+		company = com;
 	}
 	public String toString(){
  
-		
-		return String.format("%s in %s\n%s, %s", degree, courseOfStudy, school, gradYear);
+		/*Customer Number: 9
+		Mr. Robert Dupree
+		4101 Pickens Way
+		Longview, TX 75601
+		RobertODupree@einrot.com
+		Mapping technician at Irving's Sporting Goods
+		Press (1) to search for another customer or press (2) to Edit the customer's address.*/
+		return String.format("Customer Number: %s\n%s %s\n%s\n%s, %s %s\n%s\n%s at %s", primaryKeyID, title, fullName, streetAddress, city, state, zipCode, emailAddress, position, company.getCompanyName());
 	}
 
 	public String consoleTextFormatter(String text, int nextLine)

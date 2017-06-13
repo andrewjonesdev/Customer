@@ -33,7 +33,7 @@ public abstract class UtilityMySql {
 			}
 		return get;
 	}
-	public static int getIntMySql(String forName,String driverName, String driverConnection,int get, String column, String table, String primaryKeyName, int primaryKeyID){
+	public static int getIntMySql(String forName, String driverConnection,int get, String column, String table, String primaryKeyName, int primaryKeyID){
 		try{
 			//Class.forName("com.mysql.jdbc.Driver");
 			Class.forName(forName);
@@ -55,7 +55,7 @@ public abstract class UtilityMySql {
 			}
 		return get;
 	}
-	public static double getDoubleMySql(String forName,String driverName, String driverConnection,double get, String column, String table, String primaryKeyName, int primaryKeyID){
+	public static double getDoubleMySql(String forName, String driverConnection,double get, String column, String table, String primaryKeyName, int primaryKeyID){
 		try{
 			//Class.forName("com.mysql.jdbc.Driver");
 			Class.forName(forName);
@@ -77,7 +77,7 @@ public abstract class UtilityMySql {
 			}
 		return get;
 	}
-	public static long getLongMySql(String forName,String driverName, String driverConnection,long get, String column, String table, String primaryKeyName, int primaryKeyID){
+	public static long getLongMySql(String forName, String driverConnection,long get, String column, String table, String primaryKeyName, int primaryKeyID){
 		try{
 			//Class.forName("com.mysql.jdbc.Driver");
 			Class.forName(forName);
@@ -99,7 +99,7 @@ public abstract class UtilityMySql {
 			}
 		return get;
 	}
-	public static float getFloatMySql(String forName,String driverName, String driverConnection,float get, String column, String table, String primaryKeyName, int primaryKeyID){
+	public static float getFloatMySql(String forName, String driverConnection,float get, String column, String table, String primaryKeyName, int primaryKeyID){
 		try{
 			//Class.forName("com.mysql.jdbc.Driver");
 			Class.forName(forName);

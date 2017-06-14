@@ -23,7 +23,7 @@ public class Company {
 	private int primaryKeyID = 0;
 	private String company = "";
 	private String forName = "com.mysql.jdbc.Driver";
-	private String driverConnection = "jdbc:mysql://localhost/Customer?user=root&password=password";
+	private String driverConnection = "jdbc:mysql://localhost/Customers?user=root&password=password";
 //	private String driverConnection = "jdbc:mysql://localhost/roboResume?user=root&password=root";
 	private String table = "Company";
 	private String primaryKeyName = "CompanyID";

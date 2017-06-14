@@ -26,9 +26,9 @@ public class Customer {
 	private String position = "";
 	private Company company = new Company();
 	private String forName = "com.mysql.jdbc.Driver";
-	private String driverConnection = "jdbc:mysql://localhost/Customer?user=root&password=password";
+	private String driverConnection = "jdbc:mysql://localhost/Customers?user=root&password=password";
 //	private String driverConnection = "jdbc:mysql://localhost/roboResume?user=root&password=root";
-	private String table = "Customer";
+	private String table = "customers";
 	private String primaryKeyName = "CustomerID";
 	private int primaryKeyID = 0;
 	
@@ -48,7 +48,7 @@ public class Customer {
 			Class.forName(forName);
             con = DriverManager.getConnection(driverConnection);
 			stmt = con.createStatement();
-			String sql  = "INSERT INTO Customer (FullName,Title,FirstName,LastName,City,State,ZipCode,EmailAddress,Position,CompanyID) VALUES (?,?,?,?,?,?,?,?,?,?);";
+			String sql  = "INSERT INTO customers (FullName,Title,FirstName,LastName,City,State,ZipCode,EmailAddress,Position,CompanyID) VALUES (?,?,?,?,?,?,?,?,?,?);";
 			PreparedStatement p = con.prepareStatement(sql);
 			p.setString(1, fullName);
 			p.setString(2, title);
@@ -87,7 +87,7 @@ public class Customer {
 			Class.forName(forName);
             con = DriverManager.getConnection(driverConnection);
 			stmt = con.createStatement();
-			String sql  = "INSERT INTO Customer (FullName,Title,FirstName,LastName,City,State,ZipCode,EmailAddress,Position,CompanyID) VALUES (?,?,?,?,?,?,?,?,?,?);";
+			String sql  = "INSERT INTO customers (FullName,Title,FirstName,LastName,City,State,ZipCode,EmailAddress,Position,CompanyID) VALUES (?,?,?,?,?,?,?,?,?,?);";
 			PreparedStatement p = con.prepareStatement(sql);
 			p.setString(1, fullName);
 			p.setString(2, title);

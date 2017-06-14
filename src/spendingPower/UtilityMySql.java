@@ -187,7 +187,7 @@ public abstract class UtilityMySql {
 			}
 		
 	}
-	public void setLongMySql(String forName, String driverConnection,long get, long set, String column, String table, String primaryKeyName, int primaryKeyID){
+	public static void setLongMySql(String forName, String driverConnection,long get, long set, String column, String table, String primaryKeyName, int primaryKeyID){
 		try{
 			//Class.forName("com.mysql.jdbc.Driver");
 			Class.forName(forName);

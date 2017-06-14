@@ -27,6 +27,7 @@ public class Customer {
 	private Company company = new Company();
 	private String forName = "com.mysql.jdbc.Driver";
 	private String driverConnection = "jdbc:mysql://localhost/Customer?user=root&password=password";
+//	private String driverConnection = "jdbc:mysql://localhost/roboResume?user=root&password=root";
 	private String table = "Customer";
 	private String primaryKeyName = "CustomerID";
 	private int primaryKeyID = 0;
@@ -44,9 +45,8 @@ public class Customer {
 		position = "lead programmer";
 		
 		try{
-			Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/Customer?"
-                                + "user=root&password=password");
+			Class.forName(forName);
+            con = DriverManager.getConnection(driverConnection);
 			stmt = con.createStatement();
 			String sql  = "INSERT INTO Customer (FullName,Title,FirstName,LastName,City,State,ZipCode,EmailAddress,Position,CompanyID) VALUES (?,?,?,?,?,?,?,?,?,?);";
 			PreparedStatement p = con.prepareStatement(sql);
@@ -84,9 +84,8 @@ public class Customer {
 		company = com;
 		
 		try{
-			Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/Customer?"
-                                + "user=root&password=password");
+			Class.forName(forName);
+            con = DriverManager.getConnection(driverConnection);
 			stmt = con.createStatement();
 			String sql  = "INSERT INTO Customer (FullName,Title,FirstName,LastName,City,State,ZipCode,EmailAddress,Position,CompanyID) VALUES (?,?,?,?,?,?,?,?,?,?);";
 			PreparedStatement p = con.prepareStatement(sql);

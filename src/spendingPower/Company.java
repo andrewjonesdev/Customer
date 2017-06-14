@@ -24,6 +24,7 @@ public class Company {
 	private String company = "";
 	private String forName = "com.mysql.jdbc.Driver";
 	private String driverConnection = "jdbc:mysql://localhost/Customer?user=root&password=password";
+//	private String driverConnection = "jdbc:mysql://localhost/roboResume?user=root&password=root";
 	private String table = "Company";
 	private String primaryKeyName = "CompanyID";
 	
@@ -34,9 +35,8 @@ public class Company {
 		//company;
 		
 		try{
-			Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/Customer?"
-                                + "user=root&password=password");
+			Class.forName(forName);
+            con = DriverManager.getConnection(driverConnection);
 			stmt = con.createStatement();
 			String sql  = "INSERT INTO Company (Company) VALUES (?);";
 			PreparedStatement p = con.prepareStatement(sql);
@@ -58,9 +58,8 @@ public class Company {
 		//company;
 		
 		try{
-			Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/Customer?"
-                                + "user=root&password=password");
+			Class.forName(forName);
+            con = DriverManager.getConnection(driverConnection);
 			stmt = con.createStatement();
 			String sql  = "INSERT INTO Company (Company) VALUES (?);";
 			PreparedStatement p = con.prepareStatement(sql);
@@ -87,7 +86,7 @@ public class Company {
 
 		return UtilityMySql.getStringMySql(forName, driverConnection, company, "Company", table, primaryKeyName, primaryKeyID);
 	}
-	public void setCompany(String com){
+	public void setCompanyNamr(String com){
 		UtilityMySql.setStringMySql(forName, driverConnection, company, com, "Company", table, primaryKeyName, primaryKeyID);
 	}
 	public String toString(){
